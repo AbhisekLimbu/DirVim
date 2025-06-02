@@ -1,21 +1,22 @@
 CXX := g++
-CXXFLAGS := -wall -Wextra -std=c++17
-
+CXXFLAGS := -Wall -Wextra -std=c++17 -Iinclude
+LDLIBS := -lncurses
 SRC_DIR := src
-BUILd_DIR := build 
-BIN = DirVim
+BUILD_DIR := build
+BIN := DirVim
 
 SRCS := $(wildcard $(SRC_DIR)/*.cpp)
-OBJS := $(pathsubst  $(SRC_DIR)/%.cpp, $(BUILD.DIR)/%.o, $(SRCS))
+OBJS := $(patsubst $(SRC_DIR)/%.cpp, $(BUILD_DIR)/%.o, $(SRCS))
 
-$(BUILD_DIR)/%.o = : $(SRC_DIR)/*.cpp)
-	@mkdir -p $(BUILD_DIR)
+$(BUILD_DIR)/%.o: $(SRC_DIR)/%.cpp
+	mkdir -p $(BUILD_DIR)
 	$(CXX) $(CXXFLAGS) -c $< -o $@
 
 $(BIN): $(OBJS)
-	$(CXX) $(CXXFLAGS) -o $@ $^
-.phony: clean
+	$(CXX) $(CXXFLAGS) -o $@ $^ $(LDLIBS)
 
-clean :
-	rm -rf $(BUILD_DIR) $(BIN)
 
+.PHONY: clean
+
+clean:
+	@rm -rf $(BUILD_DIR) $(BIN)
