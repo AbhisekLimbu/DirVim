@@ -1,0 +1,23 @@
+# DirVim
+
+DirVim is a simple terminal-based file explorer built using C++. It allows users to view the contents of the current working directory and navigate into subdirectories using text-based input.
+
+## Features
+
+- Lists all files and folders in the current directory
+- Allows navigation into subdirectories by typing the folder name
+- Supports moving up to the parent directory using `..`
+- Quits the program using `q`
+- Checks if the user input is a valid directory
+
+## How It Works
+
+The program uses the `dirent.h` library to interact with the file system. It displays the contents of the current directory, prompts the user to enter a directory name, and updates the view if the input is a valid directory.
+
+## Build Instructions
+
+To compile and run the project:
+
+
+Make sure you have `make` and `g++` installed, along with `ncurses` if you plan to extend the UI.
+
